@@ -32,6 +32,13 @@ def register_exit(records, name, exit_time):
 
 def main():
     print("Программа запущена")
+    records = []
+    
+    register_entry(records, "Олег", "09:00")
+    register_exit(records, "Олег", "10:30")
+    
+    duration = calculate_duration(records, "Олег")
+    print(f"Олег был на практике {duration} минут")
 
 if __name__ == "__main__":
     main()
