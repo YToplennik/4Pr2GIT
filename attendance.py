@@ -1,4 +1,6 @@
 from datetime import datetime
+LATE_MINUTES = 10
+START_TIME = "09:00"
 
 def parse_time(time_str):
     return datetime.strptime(time_str, "%H:%M")
@@ -29,6 +31,12 @@ def register_exit(records, name, exit_time):
             record["exit"] = exit_time
             return record
     raise ValueError("Запись для выхода не найдена")
+
+def is_late(entry_time, start_time=START_TIME, late_minutes=LATE_MINUTES):
+    entry_dt = parse_time(entry_time)
+    start_dt = parse_time(start_time)
+    delta = entry_dt - start_dt
+    return int(delta.total_seconds() // 60) >= late_minutes
 
 def main():
     print("Программа запущена")
