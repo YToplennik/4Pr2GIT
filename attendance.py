@@ -21,6 +21,7 @@ def register_entry(records, name, entry_time):
         "entry": entry_time,
         "exit": None,
         "duration_minutes": None,
+        "late": is_late(entry_time)
     }
     records.append(record)
     return record
@@ -43,10 +44,13 @@ def main():
     records = []
     
     register_entry(records, "Олег", "09:00")
+    register_entry(records, "Василий", "09:15")
     register_exit(records, "Олег", "10:30")
+    register_exit(records, "Василий", "11:00")
     
-    duration = calculate_duration(records, "Олег")
-    print(f"Олег был на практике {duration} минут")
+    print("Список посещений:")
+    for r in records:
+        print(r)
 
 if __name__ == "__main__":
     main()
