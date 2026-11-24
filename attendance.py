@@ -1,3 +1,18 @@
+from datetime import datetime
+
+def parse_time(time_str):
+    return datetime.strptime(time_str, "%H:%M")
+    
+def calculate_duration(records, name):
+    for record in reversed(records):
+        if record["name"] == name and record["exit"] is not None:
+            start = parse_time(record["entry"])
+            end = parse_time(record["exit"])
+            delta = end - start
+            record["duration_minutes"] = int(delta.total_seconds() // 60)
+            return record["duration_minutes"]
+    raise ValueError("Закрытая запись не найдена")
+
 def register_entry(records, name, entry_time):
     record = {
         "name": name,
