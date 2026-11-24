@@ -1,5 +1,5 @@
 from datetime import datetime
-LATE_MINUTES = 10
+LATE_MINUTES = 7
 START_TIME = "09:00"
 
 def parse_time(time_str):
